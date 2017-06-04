@@ -255,6 +255,33 @@ static inline __host__ __device__ half lgamma(half a) {
 #endif
   }
 
+static inline __host__ __device__ half erf(half a) {
+#ifdef __CUDA_ARCH__
+    float fa = __half2float(a);
+    return __float2half(erff(fa));
+#else // __CUDA_ARCH__
+    return THC_float2half(erff(THC_half2float(a)));
+#endif
+  }
+
+static inline __host__ __device__ half erfcx(half a) {
+#ifdef __CUDA_ARCH__
+    float fa = __half2float(a);
+    return __float2half(erfcxf(fa));
+#else // __CUDA_ARCH__
+    return THC_float2half(erfcxf(THC_half2float(a)));
+#endif
+  }
+
+static inline __host__ __device__ half erfinv(half a) {
+#ifdef __CUDA_ARCH__
+    float fa = __half2float(a);
+    return __float2half(erfinvf(fa));
+#else // __CUDA_ARCH__
+    return THC_float2half(erfinvf(THC_half2float(a)));
+#endif
+  }
+
   static inline __host__ __device__ half cos(half a) {
 #ifdef __CUDA_ARCH__
 #ifdef CUDA_HALF_INSTRUCTIONS
@@ -537,6 +564,9 @@ struct THCNumerics<float> {
   static inline __host__ __device__ bool ne(float a, float b) { return a != b; }
 
   static inline __host__ __device__  float lgamma(float a) { return lgammaf(a);}
+  static inline __host__ __device__  float erf   (float a) { return    erff(a);}
+  static inline __host__ __device__  float erfcx (float a) { return  erfcxf(a);}
+  static inline __host__ __device__  float erfinv(float a) { return erfinvf(a);}
   static inline __host__ __device__  float exp  (float a) { return   expf(a); }
   static inline __host__ __device__  float exp10(float a) { return exp10f(a); }
   static inline __host__ __device__  float log  (float a) { return   logf(a); }
@@ -582,6 +612,9 @@ struct THCNumerics<double> {
   static inline __host__ __device__ bool ne(double a, double b) { return a != b; }
 
   static inline __host__ __device__  double lgamma(double a) { return ::lgamma(a);}
+  static inline __host__ __device__  double erf   (double a) { return    ::erf(a);}
+  static inline __host__ __device__  double erfcx (double a) { return  ::erfcx(a);}
+  static inline __host__ __device__  double erfinv(double a) { return ::erfinv(a);}
   static inline __host__ __device__  double exp  (double a) { return   ::exp(a); }
   static inline __host__ __device__  double exp10(double a) { return ::exp10(a); }
   static inline __host__ __device__  double log  (double a) { return   ::log(a); }

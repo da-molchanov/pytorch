@@ -66,6 +66,15 @@ class TestTorch(TestCase):
     def test_lgamma(self):
         self._testMathByName('lgamma')
 
+    def test_erf(self):
+        self._testMathByName('erf')
+
+    # def test_erfcx(self):
+    #     self._testMathByName('erfcx')
+
+    # def test_erfinv(self):
+    #     self._testMathByName('erfinv')
+
     def test_asin(self):
         self._testMath(torch.asin, lambda x: math.asin(x) if abs(x) <= 1 else float('nan'))
 

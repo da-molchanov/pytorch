@@ -108,6 +108,69 @@
 ]]
 
 [[
+  name: erf
+  defined_if: defined(TH_REAL_IS_FLOAT) || defined(TH_REAL_IS_DOUBLE) || CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  with_stateless: True
+  return: argument 0
+  arguments:
+    - arg: THTensor* result
+      output: True
+    - THTensor* self
+]]
+
+[[
+  name: erf_
+  defined_if: defined(TH_REAL_IS_FLOAT) || defined(TH_REAL_IS_DOUBLE) || CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  cname: erf
+  return: self
+  arguments:
+    - THTensor* self
+    - THTensor* self
+]]
+
+[[
+  name: erfcx
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  with_stateless: True
+  return: argument 0
+  arguments:
+    - arg: THTensor* result
+      output: True
+    - THTensor* self
+]]
+
+[[
+  name: erfcx_
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  cname: erfcx
+  return: self
+  arguments:
+    - THTensor* self
+    - THTensor* self
+]]
+
+[[
+  name: erfinv
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  with_stateless: True
+  return: argument 0
+  arguments:
+    - arg: THTensor* result
+      output: True
+    - THTensor* self
+]]
+
+[[
+  name: erfinv_
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  cname: erfinv
+  return: self
+  arguments:
+    - THTensor* self
+    - THTensor* self
+]]
+
+[[
   name: exp_
   defined_if: defined(TH_REAL_IS_FLOAT) || defined(TH_REAL_IS_DOUBLE) || CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
   cname: exp
