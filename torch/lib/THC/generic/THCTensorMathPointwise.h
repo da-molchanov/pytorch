@@ -9,6 +9,7 @@ THC_API void THCTensor_(log)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(lgamma)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(erf)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(erfcx)(THCState *state, THCTensor *self, THCTensor *src);
+THC_API void THCTensor_(erfc)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(erfinv)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(log1p)(THCState *state, THCTensor *self, THCTensor *src);
 THC_API void THCTensor_(exp)(THCState *state, THCTensor *self, THCTensor *src);

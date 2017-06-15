@@ -273,6 +273,15 @@ static inline __host__ __device__ half erfcx(half a) {
 #endif
   }
 
+static inline __host__ __device__ half erfc(half a) {
+#ifdef __CUDA_ARCH__
+    float fa = __half2float(a);
+    return __float2half(erfcf(fa));
+#else // __CUDA_ARCH__
+    return THC_float2half(erfcf(THC_half2float(a)));
+#endif
+  }
+
 static inline __host__ __device__ half erfinv(half a) {
 #ifdef __CUDA_ARCH__
     float fa = __half2float(a);
@@ -566,6 +575,7 @@ struct THCNumerics<float> {
   static inline __host__ __device__  float lgamma(float a) { return lgammaf(a);}
   static inline __host__ __device__  float erf   (float a) { return    erff(a);}
   static inline __host__ __device__  float erfcx (float a) { return  erfcxf(a);}
+  static inline __host__ __device__  float erfc  (float a) { return   erfcf(a);}
   static inline __host__ __device__  float erfinv(float a) { return erfinvf(a);}
   static inline __host__ __device__  float exp  (float a) { return   expf(a); }
   static inline __host__ __device__  float exp10(float a) { return exp10f(a); }
@@ -614,6 +624,7 @@ struct THCNumerics<double> {
   static inline __host__ __device__  double lgamma(double a) { return ::lgamma(a);}
   static inline __host__ __device__  double erf   (double a) { return    ::erf(a);}
   static inline __host__ __device__  double erfcx (double a) { return  ::erfcx(a);}
+  static inline __host__ __device__  double erfc  (double a) { return   ::erfc(a);}
   static inline __host__ __device__  double erfinv(double a) { return ::erfinv(a);}
   static inline __host__ __device__  double exp  (double a) { return   ::exp(a); }
   static inline __host__ __device__  double exp10(double a) { return ::exp10(a); }

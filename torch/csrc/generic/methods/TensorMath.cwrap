@@ -150,6 +150,27 @@
 ]]
 
 [[
+  name: erfc
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  with_stateless: True
+  return: argument 0
+  arguments:
+    - arg: THTensor* result
+      output: True
+    - THTensor* self
+]]
+
+[[
+  name: erfc_
+  defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
+  cname: erfc
+  return: self
+  arguments:
+    - THTensor* self
+    - THTensor* self
+]]
+
+[[
   name: erfinv
   defined_if: CUDA_FLOAT || CUDA_HALF || CUDA_DOUBLE
   with_stateless: True
